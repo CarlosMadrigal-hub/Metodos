@@ -3,84 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DFS Solver</title>
+    <title>Metodos</title>
     <style>
         body {
             margin: 0;
-            background-color: #501919;
+            background-color: #f6e1e1; /* Rosa muy suave de fondo */
             font-family: sans-serif;
-            color: azure;
+            color: #fff; /* Texto blanco para contraste */
             text-align: center;
         }
+        
         form {
             margin: 20px auto;
             width: 300px;
             border-radius: 10px;
-            background-color: #d48080;
+            background-color: #f9a1c4; /* Rosa fuerte para el fondo */
             padding: 20px;
             color: rgb(42, 5, 5);
             text-align: left;
         }
+        
         input {
             display: block;
             width: 100%;
-            padding: 5px;
+            padding: 8px;
             border: none;
-            border-bottom: 1px solid #000;
+            border-bottom: 2px solid #d56c91; /* Rosa más oscuro para el borde */
             background-color: transparent;
             margin-bottom: 10px;
             outline: none;
+            font-size: 16px;
         }
+        
         button {
             width: 100%;
             padding: 10px;
-            background-color: #672323;
+            background-color: #f26f95; /* Rosa medio para el botón */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
+        
         button:hover {
-            background-color: #555;
+            background-color: #d25578; /* Rosa más oscuro para el hover */
         }
+        
         .caja {
             margin: 20px auto;
             width: 300px;
             border: 1px solid #fff;
             border-radius: 10px;
             padding: 10px;
-            background-color: #5e2c2c;
+            background-color: #f2a9c3; /* Rosa suave para las cajas */
         }
+        
         .caja ul {
             list-style: none;
             padding: 0;
         }
+        
         .caja li {
-            background-color: #602626;
+            background-color: #f26f95; /* Rosa medio para los elementos de la lista */
             padding: 5px;
             margin: 5px 0;
             border-radius: 5px;
+            color: #fff; /* Texto blanco para contraste */
         }
+        
     </style>
 </head>
 <body>
 
+    <h1>DFS Solver</h1>
     <form action="/solve" method="post">
-        <h1>DFS Solver</h1>
         <label for="estado_inicial">Estado Inicial (separado por comas):</label>
-        <input type="text" id="estado_inicial" name="estado_inicial" required>
-
+        <input type="text" id="estado_inicial" name="estado_inicial" placeholder="Ejemplo: 4,2,3,1" required>
+    
         <label for="solucion">Solución (separado por comas):</label>
-        <input type="text" id="solucion" name="solucion" required>
-
+        <input type="text" id="solucion" name="solucion" placeholder="Ejemplo: 1,2,3,4" required>
+    
         <button type="submit">Resolver</button>
     </form>
 
-    {% if resultado %}
+    {% if resultados %}
     <div class="caja">
-        <h2>Resultado:</h2>
+        <h2>Resultado de DFS:</h2>
         <ul>
-            {% for estado in resultado %}
+            {% for estado in resultados['DFS_recursivo'] %}
+                <li>{{ estado }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="caja">
+        <h2>Resultado de BFS:</h2>
+        <ul>
+            {% for estado in resultados['BFS'] %}
+                <li>{{ estado }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="caja">
+        <h2>Resultado de DFS:</h2>
+        <ul>
+            {% for estado in resultados['DFS'] %}
                 <li>{{ estado }}</li>
             {% endfor %}
         </ul>
